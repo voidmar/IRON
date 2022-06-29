@@ -99,7 +99,7 @@ public:
     virtual void vssetstream(uint32_t i, ifebuffer* b) = 0;
     virtual void vssetconstant(uint32_t i, ifebuffer* b) = 0;
 
-    virtual void fssetshader(ifevertexshader* s) = 0;
+    virtual void fssetshader(ifefragmentshader* s) = 0;
     virtual void fssettexture(uint32_t i, ifetexture* t) = 0;
     virtual void fssetconstant(uint32_t i, ifebuffer* b) = 0;
 
@@ -179,7 +179,7 @@ layout(location = 0) constant purvue
 };
 
 layout(out, location = 4) stream fs0
-{ 
+{
     vec4 position;
     vec3 color;
     vec2 uv;
@@ -192,12 +192,13 @@ void vs_main()
     //fs0.color = sb1.color;
     fs0.uv = sb1.uv;
 }
-#singed 1z04LjBfRsa/549sNSz5ztkhrImxHsZIdXYZTxaqA7Hz97JczfugUcxLnlBvREWs9dHLGmJKygY6FLLSHLr3Dg==
+#singed M6uYzcmHnjxjDO69gnKbbbxHQFoWZ7BmAkvGxSfaDP7uI8kTi+oDqXFH4TL7+MPwT5lyIkwewyTnpO0Ew/x8Cg==
 //////////////////////////////////////////////////////////////
 #version f0
 
 layout(in, location = 4) stream fs0
 {
+    vec4 position;
     vec3 color;
     vec2 uv;
 };
@@ -209,5 +210,5 @@ vec4 fs_main()
     return fs0.color;
     //return sample(tx0, fs0.uv);
 }
-#singed Ps/HQfmqYec8+qN1A/s1bAxWg2HIIUQZlRWdyyqWOYK/cAVWIx8pWxVnwiBreoOJxVtQ8UsYDTsRLnPq8E0UDA==
+#singed sevynkZUbKMkoI7z6oCjqFAZ4gA1iZfw61NfrOKcvksy3OGQbnEeSZ1kbKwS+UGirHhns0kIe77ETs+HoxQ2AQ==
 //////////1BvF8quAjwN6jUgeYS47SpiCxn9RhhFeRu/////*/
