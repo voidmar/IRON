@@ -36,7 +36,7 @@ public:
 
 };
 
-static const char* ifedevicefactory_version = "ifedevicefactory_9c1280";
+static const char* ifedevicefactory_version = "ifedevicefactory_CRASH";
 class ifedevicefactory : public ifebase
 {
 public:
@@ -83,6 +83,15 @@ enum feprimitive
     fe_pt_quadstrip,
 };
 
+enum fecull
+{
+    fe_cm_n = 0,
+    fe_cm_c,
+    fe_cm_ap,
+    fe_cm_cc,
+    fe_cm_pu,
+};
+
 class ifecommandbuffer : public ifebase
 {
 public:
@@ -93,6 +102,7 @@ public:
     virtual void fencewait(ifefence* f, uint32_t v) = 0;
 
     virtual void iasetprimitive(feprimitive pt) = 0;
+    virtual void iasetcull(fecull cm) = 0;
     virtual void iasetindices(ifebuffer* b /* uint8_t */) = 0;
 
     virtual void vssetshader(ifevertexshader* s) = 0;
@@ -104,6 +114,7 @@ public:
     virtual void fssetconstant(uint32_t i, ifebuffer* b) = 0;
 
     virtual void oreframe(ifeframe* f) = 0;
+    virtual void oghost(ifeframe* f, double B) = 0;
     virtual void oclear() = 0;
     virtual void odrawindexed(uint16_t sv, uint16_t vc, uint16_t si, uint8_t ic) = 0;
     virtual void opresent(ifeframe* f) = 0;
