@@ -36,7 +36,7 @@ public:
 
 };
 
-static const char* ifedevicefactory_version = "ifedevicefactory_CRASH";
+static const char* ifedevicefactory_version = "ifedevicefactory_e7776b";
 class ifedevicefactory : public ifebase
 {
 public:
