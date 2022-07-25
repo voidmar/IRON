@@ -36,7 +36,7 @@ public:
 
 };
 
-static const char* ifedevicefactory_version = "ifedevicefactory_CRASH";
+static const char* ifedevicefactory_version = "ifedevicefactory_409b1c";
 class ifedevicefactory : public ifebase
 {
 public:
@@ -86,24 +86,22 @@ enum feprimitive
 enum fecull
 {
     fe_cm_n = 0,
-    fe_cm_c,
-    fe_cm_ap,
-    fe_cm_cc,
-    fe_cm_pu,
+    fe_cm_c = 1,
+    fe_cm_cc = 2,
 };
 
 class ifecommandbuffer : public ifebase
 {
 public:
 
-    virtual void reset() = 0;
-
     virtual void fenceset(ifefence* f, uint32_t v) = 0;
     virtual void fencewait(ifefence* f, uint32_t v) = 0;
 
+    virtual void reset() = 0;
+
     virtual void iasetprimitive(feprimitive pt) = 0;
     virtual void iasetcull(fecull cm) = 0;
-    virtual void iasetindices(ifebuffer* b /* uint8_t */) = 0;
+    virtual void iasetindices(ifebuffer* b /* uint16_t */) = 0;
 
     virtual void vssetshader(ifevertexshader* s) = 0;
     virtual void vssetstream(uint32_t i, ifebuffer* b) = 0;
@@ -114,9 +112,9 @@ public:
     virtual void fssetconstant(uint32_t i, ifebuffer* b) = 0;
 
     virtual void oreframe(ifeframe* f) = 0;
-    virtual void oghost(ifeframe* f, double B) = 0;
     virtual void oclear() = 0;
-    virtual void odrawindexed(uint16_t sv, uint16_t vc, uint16_t si, uint8_t ic) = 0;
+    virtual void odraw(uint16_t vc) = 0;
+    virtual void odrawindexed(uint16_t sv, uint16_t vc, uint16_t si, uint16_t ic) = 0;
     virtual void opresent(ifeframe* f) = 0;
 
 };
@@ -125,8 +123,7 @@ class ifebuffer : public ifebase
 {
 public:
 
-    // the resource is updated immediately when this member is called. it is up to the caller to ensure the buffer
-    // being updated is not in use.
+    // the resource is updated immediately when this member is called. it is up to the caller to ensure the buffer being updated is not in use.
     virtual void update(uint32_t o, const void* s, uint32_t c) = 0;
 
 };
